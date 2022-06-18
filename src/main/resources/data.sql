@@ -1,0 +1,1 @@
+INSERT INTO USERS(EMAIL, NAME, AVATAR_URL) VALUES ('teste@teste.com', 'Teste', 'https://avatars3.githubusercontent.com/u/1234?v=3&s=460');
