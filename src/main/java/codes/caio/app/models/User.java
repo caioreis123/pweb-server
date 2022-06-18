@@ -6,30 +6,10 @@ import javax.persistence.Id;
 
 @Entity(name = "users")
 public class User {
-    public String getEmail() {
-        return email;
-    }
-
     @Id
     private String email;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     private String name;
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
 
     private String avatarUrl;
 
@@ -37,5 +17,25 @@ public class User {
 
     public User(String email){
         this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
