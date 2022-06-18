@@ -21,4 +21,8 @@ public class ClientService {
     public List<Client> listClients() {
         return clientRepository.findAll();
     }
+
+    public Client getClient(String cnpj) {
+        return clientRepository.findByCnpj(cnpj);
+    }
 }
