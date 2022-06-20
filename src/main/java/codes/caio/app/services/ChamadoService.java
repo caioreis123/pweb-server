@@ -27,4 +27,9 @@ public class ChamadoService {
         List<Chamado> chamados = chamadoRepository.findByClient(client);
         chamadoRepository.deleteAll(chamados);
     }
+
+    public ResponseEntity<Chamado> updateChamado(Chamado chamado) {
+        chamadoRepository.save(chamado);
+        return ResponseEntity.ok(chamado);
+    }
 }

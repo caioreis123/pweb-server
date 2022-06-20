@@ -25,4 +25,9 @@ public class ChamadoController {
     public List<Chamado> listChamados() {
         return chamadoService.listChamados();
     }
+
+    @PatchMapping
+    public ResponseEntity<Chamado> updateChamado(@RequestBody Chamado chamado) {
+        return chamadoService.updateChamado(chamado);
+    }
 }

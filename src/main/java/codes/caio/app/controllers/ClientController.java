@@ -32,4 +32,9 @@ public class ClientController {
     public ResponseEntity<Client> deleteClient(@PathVariable String cnpj) {
         return clientService.deleteClientAndItsChamados(cnpj);
     }
+
+    @PatchMapping
+    public ResponseEntity<Client> updateClient(@RequestBody Client client) {
+        return clientService.updateClient(client);
+    }
 }

@@ -36,4 +36,18 @@ public class ClientService {
         clientRepository.deleteByCnpj(cnpj);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    public ResponseEntity<Client> updateClient(Client client) {
+        String cnpj = client.getCnpj();
+        String nameFromClientRequest = client.getName();
+        String addressFromClientRequest = client.getAddress();
+
+        Client clientToUpdate = clientRepository.findByCnpj(cnpj);
+
+        clientToUpdate.setName(nameFromClientRequest);
+        clientToUpdate.setAddress(addressFromClientRequest);
+
+        clientRepository.save(clientToUpdate);
+        return ResponseEntity.ok(client);
+    }
 }
