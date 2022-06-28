@@ -1,5 +1,6 @@
 package codes.caio.app.services;
 
+import codes.caio.app.dto.ClientDto;
 import codes.caio.app.models.Client;
 import codes.caio.app.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +18,27 @@ public class ClientService {
     @Autowired
     ChamadoService chamadoService;
 
-    public ResponseEntity<Client> createClient(Client client) {
-        clientRepository.save(client);
-        return ResponseEntity.ok(client);
+    public ResponseEntity<HttpStatus> createClient(ClientDto client) {
+        clientRepository.save(client.toClient());
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    public List<Client> listClients() {
-        return clientRepository.findAll();
+    public List<ClientDto> listClients() {
+        return ClientDto.toDtoList(clientRepository.findAll());
     }
 
     public Client getClient(String cnpj) {
         return clientRepository.findByCnpj(cnpj);
     }
 
-    public ResponseEntity<Client> deleteClientAndItsChamados(String cnpj) {
+    public ResponseEntity<HttpStatus> deleteClientAndItsChamados(String cnpj) {
         Client client = clientRepository.findByCnpj(cnpj);
         chamadoService.deleteChamadosByClient(client);
         clientRepository.deleteByCnpj(cnpj);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Client> updateClient(Client client) {
+    public ResponseEntity<HttpStatus> updateClient(ClientDto client) {
         String cnpj = client.getCnpj();
         String nameFromClientRequest = client.getName();
         String addressFromClientRequest = client.getAddress();
@@ -48,6 +49,6 @@ public class ClientService {
         clientToUpdate.setAddress(addressFromClientRequest);
 
         clientRepository.save(clientToUpdate);
-        return ResponseEntity.ok(client);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
