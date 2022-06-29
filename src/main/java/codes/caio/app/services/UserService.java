@@ -4,19 +4,20 @@ import codes.caio.app.dto.UserDto;
 import codes.caio.app.models.User;
 import codes.caio.app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public ResponseEntity<HttpStatus> createUser(String email) {
+    public ResponseEntity<User> createUser(String email) {
         User user = new User(email);
         userRepository.save(user);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.ok(user);
     }
 
     public UserDto getUser(String email) {
@@ -24,13 +25,13 @@ public class UserService {
         return new UserDto(user);
     }
 
-    public ResponseEntity<HttpStatus> updateUser(UserDto user) {
+    public ResponseEntity<User> updateUser(User user) {
         String email = user.getEmail();
         User userToUpdate = userRepository.findByEmail(email);
         String nameFromClientRequest = user.getName();
         userToUpdate.setName(nameFromClientRequest);
         userToUpdate.setAvatarUrl(user.getAvatarUrl());
         userRepository.save(userToUpdate);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(user);
     }
 }

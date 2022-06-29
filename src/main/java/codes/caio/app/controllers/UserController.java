@@ -1,11 +1,13 @@
 package codes.caio.app.controllers;
 
 import codes.caio.app.dto.UserDto;
+import codes.caio.app.models.User;
 import codes.caio.app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
 
 @RestController
 @RequestMapping("/user")
@@ -15,7 +17,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-        public ResponseEntity<HttpStatus> createUser(@RequestBody UserDto user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         return userService.createUser(user.getEmail());
     }
 
@@ -26,7 +28,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> updateUser(@RequestBody UserDto user){
+    public ResponseEntity<User> updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
 }

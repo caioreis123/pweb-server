@@ -12,13 +12,6 @@ public class Client {
     private String address;
     private String timeOfRegistration;
 
-    public Client(String cnpj, String name, String address, String timeOfRegistration) {
-        this.cnpj = cnpj;
-        this.name = name;
-        this.address = address;
-        this.timeOfRegistration = timeOfRegistration;
-    }
-
     public String getCnpj() {
         return cnpj;
     }
