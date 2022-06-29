@@ -11,6 +11,9 @@ public class ClientDto {
     private String address;
     private String timeOfRegistration;
 
+    public ClientDto() {
+    }
+
     public ClientDto(Client client) {
         this.cnpj = client.getCnpj();
         this.name = client.getName();

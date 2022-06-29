@@ -1,5 +1,6 @@
 package codes.caio.app.services;
 
+import codes.caio.app.dto.ClientDto;
 import codes.caio.app.models.Client;
 import codes.caio.app.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,9 @@ public class ClientService {
     @Autowired
     ChamadoService chamadoService;
 
-    public ResponseEntity<Client> createClient(Client client) {
-        clientRepository.save(client);
+    public ResponseEntity<ClientDto> createClient(ClientDto client) {
+        Client createdClient = new Client(client);
+        clientRepository.save(createdClient);
         return ResponseEntity.ok(client);
     }
 
@@ -37,7 +39,7 @@ public class ClientService {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Client> updateClient(Client client) {
+    public ResponseEntity<ClientDto> updateClient(ClientDto client) {
         String cnpj = client.getCnpj();
         String nameFromClientRequest = client.getName();
         String addressFromClientRequest = client.getAddress();

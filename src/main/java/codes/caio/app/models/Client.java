@@ -1,5 +1,7 @@
 package codes.caio.app.models;
 
+import codes.caio.app.dto.ClientDto;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,6 +13,17 @@ public class Client {
     private String name;
     private String address;
     private String timeOfRegistration;
+
+    public Client(ClientDto client) {
+        this.cnpj = client.getCnpj();
+        this.name = client.getName();
+        this.address = client.getAddress();
+        this.timeOfRegistration = client.getTimeOfRegistration();
+    }
+
+    public Client() {
+
+    }
 
     public String getCnpj() {
         return cnpj;
