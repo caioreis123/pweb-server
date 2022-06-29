@@ -55,8 +55,4 @@ public class ClientDto {
     public void setTimeOfRegistration(String timeOfRegistration) {
         this.timeOfRegistration = timeOfRegistration;
     }
-
-    public Client toClient() {
-        return new Client(this.cnpj, this.name, this.address, this.timeOfRegistration);
-    }
 }

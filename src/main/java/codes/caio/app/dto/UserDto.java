@@ -5,6 +5,9 @@ import codes.caio.app.models.User;
 public class UserDto {
     private String email;
 
+    public UserDto() {
+    }
+
     public String getEmail() {
         return email;
     }

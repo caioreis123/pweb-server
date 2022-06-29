@@ -1,5 +1,7 @@
 package codes.caio.app.models;
 
+import codes.caio.app.dto.UserDto;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,6 +19,11 @@ public class User {
 
     public User(String email){
         this.email = email;
+    }
+
+    public User(UserDto user) {
+        this.email = user.getEmail();
+        this.name = user.getName();
     }
 
     public String getEmail() {

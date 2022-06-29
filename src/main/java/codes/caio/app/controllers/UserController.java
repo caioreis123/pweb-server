@@ -17,8 +17,8 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return userService.createUser(user.getEmail());
+    public ResponseEntity<User> createUser(@RequestBody UserDto user) {
+        return userService.createUser(user);
     }
 
     @GetMapping("/{email}")
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<User> updateUser(@RequestBody User user){
+    public ResponseEntity<User> updateUser(@RequestBody UserDto user){
         return userService.updateUser(user);
     }
 }
